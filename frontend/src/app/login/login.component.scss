@@ -1,0 +1,105 @@
+.container {
+  height: 100vh;
+  background-color: #fffcff;
+  display: flex;
+  color: #fff;
+
+  .container-img {
+    width: 70%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .form-login {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    background-color: #011638;
+
+    form {
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .container-input {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 20px;
+
+        .form {
+          --width-of-input: 200px;
+          --border-height: 1px;
+          --border-before-color: #1e81c4;
+          --border-after-color: #1f9bee;
+          --input-hovered-color: #85b0f11f;
+          position: relative;
+          width: var(--width-of-input);
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+        /* styling of Input */
+        .input {
+          color: #fff;
+          font-size: 0.9rem;
+          background-color: transparent;
+          width: 300px;
+          height: 50px;
+          box-sizing: border-box;
+          padding-inline: 0.5em;
+          padding-block: 0.7em;
+          border: none;
+          border-bottom: var(--border-height) solid var(--border-before-color);
+        }
+        /* styling of animated border */
+        .input-border {
+          position: absolute;
+          background: var(--border-after-color);
+          width: 0%;
+          height: 2px;
+          bottom: 0;
+          left: 0;
+          transition: 0.3s;
+        }
+        /* Hover on Input */
+        input:hover {
+          background: var(--input-hovered-color);
+        }
+
+        input:focus {
+          outline: none;
+        }
+        /* here is code of animated border */
+        input:focus ~ .input-border {
+          width: 300px;
+        }
+        /* === if you want to do animated border on typing === */
+        /* remove input:focus code and uncomment below code */
+        input:valid ~ .input-border {
+          width: 100%;
+        }
+
+        .btn-login {
+          width: 200px;
+          height: 40px;
+          border: none;
+          border-radius: 10px;
+          color: #fff;
+          background-color: #1e81c4;
+        }
+
+        #forget-password {
+          font-size: 13px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

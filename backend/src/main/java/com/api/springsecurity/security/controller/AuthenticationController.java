@@ -8,7 +8,6 @@ import com.api.springsecurity.security.domain.user.User;
 import com.api.springsecurity.security.infra.security.TokenService;
 import com.api.springsecurity.security.repository.UserRepository;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
