@@ -1,0 +1,17 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+mat-toolbar {
+    color: #fff;
+    background-color: #1d1d1d;
+}
+
+mat-sidenav {
+    background-color: red;
+    width: 250px;
+  }
+  
+mat-sidenav-content {
+    padding: 20px;
+}

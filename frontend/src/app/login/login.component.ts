@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginServiceService } from '../service/login-service.service';
+import { LoginServiceService } from '../service/login/login-service.service';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Login } from '../model/login';
@@ -27,13 +27,19 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password).subscribe({
-      next: () => this.toastService.success("Login feito com sucesso!"),
-      error: (error) => {
-        console.log(error); // Mostra o erro da API (se houver)
-        this.toastService.error("Erro inesperado! Tente novamente mais tarde");
-      }
-    })
+    this.loginService.login(this.loginForm.value.login, this.loginForm.value.password)
+      .subscribe({
+        next: () => {
+          this.toastService.success("Login feito com sucesso!");
+          setTimeout(() => {
+            this.router.navigateByUrl("/cadastro-produto");
+          }, 1000);
+        },
+        error: (error) => {
+          console.log(error); // Mostra o erro da API (se houver)
+          this.toastService.error("Erro inesperado! Tente novamente mais tarde");
+        },
+      });
   }
   
 
