@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogModule,
+} from '@angular/material/dialog';
 import { DialogCadastroComponent } from './dialog-cadastro/dialog-cadastro.component';
 import { Produto } from '../model/Produto';
 import { ProdutoService } from '../service/produto/produto.service';
@@ -12,24 +16,27 @@ import { AuthService } from '../service/auth/auth.service';
 @Component({
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.component.html',
-  styleUrls: ['./cadastro-produto.component.scss']
+  styleUrls: ['./cadastro-produto.component.scss'],
 })
 export class CadastroProdutoComponent implements OnInit {
   events: string[] = [];
   opened!: boolean;
   produto!: Produto[];
   dataSource = new MatTableDataSource<any>();
-  displayedColumns: string[] = ['id','nome', 'preco'];
+  displayedColumns: string[] = ['id', 'nome', 'preco'];
   sort!: MatSort; // MatSort não precisa ser inicializado como 'any'
   dados: Produto[] = [];
-  role!: boolean // Variável para armazenar a role
+  role!: boolean; // Variável para armazenar a role
   isAdmin: boolean = false;
-  
 
-
-  constructor(private dialog: MatDialog, private produtoService: ProdutoService, private toastService:ToastrService, private authService: AuthService) {
+  constructor(
+    private dialog: MatDialog,
+    private produtoService: ProdutoService,
+    private toastService: ToastrService,
+    private authService: AuthService
+  ) {
     this.role = this.authService.getRole();
-    if(this.role != true) {
+    if (this.role != true) {
       this.isAdmin = false;
     } else {
       this.isAdmin = true;
@@ -38,14 +45,13 @@ export class CadastroProdutoComponent implements OnInit {
 
   ngOnInit() {
     this.listarProdutos();
-    
-    console.log(this.role)
+
+    console.log(this.role);
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogCadastroComponent, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
+    const dialogRef = this.dialog.open(DialogCadastroComponent, {});
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
@@ -62,10 +68,12 @@ export class CadastroProdutoComponent implements OnInit {
         this.dataSource.data = dados;
       },
       (erro) => {
-        console.log("Erro ao obter os dados:", erro);
+        console.log('Erro ao obter os dados:', erro);
       }
     );
   }
 
-
+  logout(): void {
+    this.authService.logout(); // Chama o método de logout do serviço de autenticação
+  }
 }

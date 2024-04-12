@@ -13,14 +13,21 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav mode="side">
     <!-- Conteúdo da sidenav -->
-    <p>Bem vindo! </p>
+    <p>Bem vindo!</p>
+
+    <button mat-raised-button color="warn" id="logout" (click)="logout()">Sair</button>
   </mat-sidenav>
 
   <mat-sidenav-content>
     <div class="container-lista">
       <h1>Lista de produtos</h1>
 
-      <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="isAdmin">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openDialog()"
+        *ngIf="isAdmin"
+      >
         Adicionar produto
       </button>
     </div>

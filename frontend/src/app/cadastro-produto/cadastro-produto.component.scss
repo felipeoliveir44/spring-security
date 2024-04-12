@@ -9,6 +9,11 @@ mat-toolbar {
 
 mat-sidenav {
     width: 150px;
+    padding: 10px;
+
+    #logout {
+        width: 100%;
+    }
 }
   
 mat-sidenav-content {
@@ -19,3 +24,4 @@ mat-sidenav-content {
     display: flex;
     justify-content: space-between;
 }
+
