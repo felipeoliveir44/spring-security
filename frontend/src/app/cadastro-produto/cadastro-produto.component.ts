@@ -7,6 +7,7 @@ import { ProdutoService } from '../service/produto/produto.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { AuthService } from '../service/auth/auth.service';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -21,14 +22,24 @@ export class CadastroProdutoComponent implements OnInit {
   displayedColumns: string[] = ['id','nome', 'preco'];
   sort!: MatSort; // MatSort não precisa ser inicializado como 'any'
   dados: Produto[] = [];
+  role!: boolean // Variável para armazenar a role
+  isAdmin: boolean = false;
+  
 
 
-  constructor(private dialog: MatDialog, private produtoService: ProdutoService, private toastService:ToastrService) {
-
+  constructor(private dialog: MatDialog, private produtoService: ProdutoService, private toastService:ToastrService, private authService: AuthService) {
+    this.role = this.authService.getRole();
+    if(this.role != true) {
+      this.isAdmin = false;
+    } else {
+      this.isAdmin = true;
+    }
   }
 
   ngOnInit() {
     this.listarProdutos();
+    
+    console.log(this.role)
   }
 
   openDialog(): void {
@@ -49,7 +60,6 @@ export class CadastroProdutoComponent implements OnInit {
         // **Atribui os dados recebidos à variável 'dados'**
         this.dados = dados;
         this.dataSource.data = dados;
-        console.log('Dados recebidos:', dados);
       },
       (erro) => {
         console.log("Erro ao obter os dados:", erro);

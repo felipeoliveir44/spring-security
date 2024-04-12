@@ -4,20 +4,30 @@
       <img src="../../assets/img/sign_up.svg" alt="" />
     </div>
     <div class="form-login">
-      <form [formGroup]="loginForm">
-        <h1>Login</h1>
+      
 
+      <form [formGroup]="loginForm">
+        <p>Digite seu login para acessar.</p>
         <div class="container-input">
           <div class="form">
+            
             <label for="">Usuário ou email</label>
-            <input class="input" placeholder="Digite seu email" required="" type="text" formControlName="login">
-            <span class="input-border"></span>
+            <div class="input-content">
+              <input class="input" placeholder="Digite seu email" required="" type="text" formControlName="login">
+              <div class="icon-content">
+                <i data-feather="mail"></i>
+              </div>
+            </div>
           </div>
 
           <div class="form">
             <label for="">Senha</label>
-            <input class="input" placeholder="Digite sua senha" required="" type="password" formControlName="password" >
-            <span class="input-border"></span>
+            <div class="input-content">
+              <input class="input" placeholder="Digite sua senha" required="" type="password" formControlName="password">
+              <div class="icon-content">
+                <i data-feather="lock"></i>
+              </div>
+            </div>
           </div>
 
           <label for="forget-password" id="forget-password">Esqueceu sua senha?</label>
@@ -25,5 +35,8 @@
         </div>
       </form>
     </div>
+    
+    
+    
   </div>
 </main>

@@ -18,4 +18,14 @@ export class AuthService {
     }
   }
 
+  getRole() {
+    const item = sessionStorage.getItem("role");
+    
+    if(item == "ROLE_ADMIN") {
+      return true
+    }
+    else {
+      return false
+    }
+  }
 }

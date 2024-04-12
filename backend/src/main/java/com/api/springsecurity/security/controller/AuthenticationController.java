@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -36,7 +39,20 @@ public class AuthenticationController {
         var auth = this.manager.authenticate(usernamePassword);
 
         var token = tokenService.generateToken((User)auth.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        var userRoles = ((User) auth.getPrincipal()).getAuthorities();
+        // Filtra as authorities para verificar se o usuário tem ROLE_ADMIN ou ROLE_USER
+        boolean hasAdminRole = userRoles.stream().anyMatch(role -> role.getAuthority().equals("ROLE_ADMIN"));
+        boolean hasUserRole = userRoles.stream().anyMatch(role -> role.getAuthority().equals("USER"));
+
+        // Define a role a ser retornada com base nas roles do usuário
+        String role = null;
+        if (hasAdminRole) {
+            role = "ROLE_ADMIN";
+        } else if (hasUserRole) {
+            role = "ROLE_USER";
+        }
+
+        return ResponseEntity.ok(new LoginResponseDTO(token, role));
     }
 
     @PostMapping("/register")

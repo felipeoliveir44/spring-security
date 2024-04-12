@@ -8,10 +8,14 @@ mat-toolbar {
 }
 
 mat-sidenav {
-    background-color: red;
-    width: 250px;
-  }
+    width: 150px;
+}
   
 mat-sidenav-content {
     padding: 20px;
+}
+
+.container-lista {
+    display: flex;
+    justify-content: space-between;
 }
