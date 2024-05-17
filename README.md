@@ -14,7 +14,7 @@ Este projeto consiste em uma API Rest desenvolvida em Java com Spring Security, 
 ## Instalação do back-end
 1. Clone o repositorio
 ```
-https://github.com/felipeoliveir44/omniBank.git
+https://github.com/felipeoliveir44/spring-security.git
 ```
 2. Navegue até o diretório do projeto clonado:
 ```
